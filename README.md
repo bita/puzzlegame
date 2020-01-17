@@ -1,2 +1,2 @@
-# puzzlegame
-coolest game ever
+# Puzzle Game
+coolest game ever!!
