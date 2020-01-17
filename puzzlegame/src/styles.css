@@ -9,7 +9,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .spacer {
     flex: 1 1 auto;
   }
-mat-card{
-    width: 100%;
-    min-height: 100px;
+  .card {
+    width: 25%;
+    margin: 32px 2%;
+    float:left;
+  }
+.card img{
+  width: 100px !important;
+  height: 100px !important;
 }
