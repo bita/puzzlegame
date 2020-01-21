@@ -18,6 +18,12 @@ import { BestScoreComponent } from './best-score/best-score.component';
 import { RankComponent } from './rank/rank.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { AppGuard } from './app-guard.guard';
+import {MatInputModule} from '@angular/material/input';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component'; 
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -29,11 +35,15 @@ import { HomeComponent } from './home/home.component';
     LatestScoreComponent,
     BestScoreComponent,
     RankComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    AlertDialogComponent
   ],
   imports: [
+    MatDialogModule,
     BrowserModule,
     FormsModule,
+    MatInputModule,
     MatToolbarModule,
     MatGridListModule,
     MatCardModule,
@@ -46,7 +56,8 @@ import { HomeComponent } from './home/home.component';
     MatIconModule,
     BrowserAnimationsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService, AppGuard],
+  bootstrap: [AppComponent],
+  entryComponents: [AlertDialogComponent],
 })
 export class AppModule { }

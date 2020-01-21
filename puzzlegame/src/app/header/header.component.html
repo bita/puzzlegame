@@ -1,17 +1,8 @@
 <mat-toolbar color="primary">
-    <button mat-button [matMenuTriggerFor]="menu">Home</button>
-
-    <button mat-button [matMenuTriggerFor]="menu">Puzzeles</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-
-    <button mat-button [matMenuTriggerFor]="menu">Scores List</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-    <span class="spacer"></span>
-    <button mat-button>Loge in/out</button>
+    
+    <a routerLink='/home' ><button mat-button>Home</button></a>
+    <button mat-button >Puzzeles</button>
+    <button mat-button >Scores List</button>
+      <span class="spacer"></span>
+    <a routerLink='/login' ><button mat-button>Loge in/out</button></a>
 </mat-toolbar>

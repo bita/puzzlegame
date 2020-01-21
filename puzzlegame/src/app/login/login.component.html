@@ -1,0 +1,16 @@
+<mat-card class="login">
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput type="email" placeholder="Email" #unam >
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" placeholder="password" #pwd>
+        </mat-form-field>
+        <button *ngIf="!isLoggedIn" (click)="check(unam.value,pwd.value)" class="subbtn" mat-raised-button color="accent">Login</button>
+        <button *ngIf="isLoggedIn" (click)="logout()" class="subbtn" mat-raised-button color="accent">Logout</button>
+
+        <button class="subbtn" mat-raised-button color="primary">Register</button>
+      </form>
+      
+</mat-card>
