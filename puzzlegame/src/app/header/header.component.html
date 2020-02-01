@@ -1,8 +1,9 @@
-<mat-toolbar color="primary">
-    
-    <a routerLink='/home' ><button mat-button>Home</button></a>
-    <button mat-button >Puzzeles</button>
-    <button mat-button >Scores List</button>
-      <span class="spacer"></span>
-    <a routerLink='/login' ><button mat-button>Loge in/out</button></a>
-</mat-toolbar>
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+  <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/">Home</a>
+      <a class="nav-item nav-link" routerLink="/">Puzzeles</a>
+      <a class="nav-item nav-link" routerLink="/">Scores List</a>
+
+      <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>

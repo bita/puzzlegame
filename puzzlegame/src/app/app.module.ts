@@ -1,11 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,47 +12,56 @@ import { LatestScoreComponent } from './latest-score/latest-score.component';
 import { BestScoreComponent } from './best-score/best-score.component';
 import { RankComponent } from './rank/rank.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
+
+import { AppComponent } from './app.component';
+import { appRoutingModule } from './app-routing.module';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
-import { AppGuard } from './app-guard.guard';
-import {MatInputModule} from '@angular/material/input';
-import { AlertDialogComponent } from './alert-dialog/alert-dialog.component'; 
-import {MatDialogModule} from '@angular/material/dialog';
-
-
-
+import { HeaderComponent } from './header/header.component';
+import { MatInputModule } from '@angular/material';
+import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    LatestScoreComponent,
-    BestScoreComponent,
-    RankComponent,
-    HomeComponent,
-    LoginComponent,
-    AlertDialogComponent
-  ],
-  imports: [
-    MatDialogModule,
-    BrowserModule,
-    FormsModule,
-    MatInputModule,
-    MatToolbarModule,
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        appRoutingModule,
+        MatInputModule,
     MatGridListModule,
     MatCardModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    FormsModule,
     MatNativeDateModule,
     MatButtonModule,
-    AppRoutingModule,
+    appRoutingModule,
     MatMenuModule,
     MatIconModule,
-    BrowserAnimationsModule
-  ],
-  providers: [AuthService, AppGuard],
-  bootstrap: [AppComponent],
-  entryComponents: [AlertDialogComponent],
+    ],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        HomeComponent,
+        LoginComponent,
+        LatestScoreComponent,
+        BestScoreComponent,
+        RankComponent,
+        PuzzleGameComponent
+        
+    ],
+    providers: [
+        
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+        // provider used to create fake backend
+        fakeBackendProvider
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

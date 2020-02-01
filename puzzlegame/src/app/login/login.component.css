@@ -1,20 +1,11 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  .login{
-      width: 50%;
-      margin: 32px auto;
-      background-color: #837888;
-  }
-  .example-full-width {
-    width: 100%;
-  }
-  .subbtn{
-      margin: 12px 2% !important;
-      min-width: 30% !important;
-  }
-  .mat-raised-button.mat-accent {
-    background-color: #cfc6d2;
+.card {
+    width: 96% !important;
+    margin: 32px 2%;
+    float: left;
 }
+.pull-left {
+    float: left !important;
+  }
+  .pull-right {
+    float: right !important;
+  }

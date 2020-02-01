@@ -1,3 +1,23 @@
-<app-latest-score></app-latest-score>
-<app-best-score></app-best-score>
-<app-rank></app-rank>
+<div style="margin-top:32px;" class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Other Users are playing too! :)</strong>
+    <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="users">
+            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+        </ul>
+  </div>
+  <div class="w100 mauto bg-light container-fluid">
+    <div class="card h-100">
+        <app-best-score></app-best-score>
+    </div>
+    <div class="card h-100">
+        <app-latest-score></app-latest-score>
+    </div>
+    <div class="card h-100">
+        <app-rank></app-rank>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+<div class="ImagePuzzleContainer">
+	<app-puzzle-game></app-puzzle-game>
+</div>

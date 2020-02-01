@@ -1,70 +1,68 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
-import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+
+import { AuthenticationService } from '../_services ';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+@Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
+    loginForm: FormGroup;
+    loading = false;
+    submitted = false;
+    returnUrl: string;
+    error = '';
 
-/*   constructor(private authService: AuthService) { }
-
-  isLoggedIn = false;
-
-  ngOnInit() {
-    this.authService.isAuthenticated().subscribe(
-      (data: boolean) => {
-        this.isLoggedIn = data;
-        console.log(this.isLoggedIn);
-      })
-  }  
-
-  login(uname: string, pwd : string){
-    if(uname == "admin" && pwd =="admin123"){
-    localStorage.setItem('username',"admin");
-    this.authService.login();
-    console.log("you are logged in")
-  }else{
-    console.log("you are not logged in")
-    this.isLoggedIn = false;
-  }
-}
-
-  logout(){
-    this.authService.logout();
-  } */
-
-constructor(public dialog: MatDialog, private routes : Router, private service : AuthService) { }
-  ngOnInit() {
-  }
-  check(uname: string, p : string)
-  {
-    var output = this.service.checkusernameandpassword(uname, p);
-    if(output == true)
-    {
-      this.routes.navigate(['/home']);
-      this.openAlertDialog('Welcome ' + uname)
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService
+    ) { 
+        // redirect to home if already logged in
+        if (this.authenticationService.currentUserValue) { 
+            this.router.navigate(['/']);
+        }
     }
-    else{
-      this.openAlertDialog('Invalid username or password BABY!');
+
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
+
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
- 
- 
-}
-openAlertDialog(message) {
-  const dialogRef = this.dialog.open(AlertDialogComponent,{
-    data:{
-      message: message,
-      buttonText: {
-        cancel: 'Ok'
-      }
-    },
-  });
-}
 
-}
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
 
+    onSubmit() {
+        this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.loginForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
+    }
+}

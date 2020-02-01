@@ -1,16 +1,36 @@
-<mat-card class="login">
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <input matInput type="email" placeholder="Email" #unam >
-        </mat-form-field>
-      
-        <mat-form-field class="example-full-width">
-          <input matInput type="password" placeholder="password" #pwd>
-        </mat-form-field>
-        <button *ngIf="!isLoggedIn" (click)="check(unam.value,pwd.value)" class="subbtn" mat-raised-button color="accent">Login</button>
-        <button *ngIf="isLoggedIn" (click)="logout()" class="subbtn" mat-raised-button color="accent">Logout</button>
-
-        <button class="subbtn" mat-raised-button color="primary">Register</button>
-      </form>
-      
-</mat-card>
+<div class="col-md-8 offset-md-2 mt-5">
+  <div class="alert alert-info">
+      Username: test<br />
+      Password: test
+  </div>
+  <div class="card col-ml-12">
+      <h4 class="card-header">A Good Puzzle make your day!</h4>
+      <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                  <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                      <div *ngIf="f.username.errors.required">Username is required</div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Password is required</div>
+                  </div>
+              </div>
+              <button [disabled]="loading" class="pull-left  btn btn-lg btn-primary">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                  Login
+              </button>
+              <button [disabled]="loading" class="pull-right btn btn-lg btn-warning">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Register
+            </button>
+              <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+          </form>
+      </div>
+  </div>
+</div>

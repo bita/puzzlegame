@@ -1,0 +1,53 @@
+<div class="imagePuzzle bg-dark">
+	<div class="unsolvedPuzzle">
+		<div class="alert alert-secondary text-center" role="alert"><strong>Name:</strong>  {{imageName}}</div>
+		<ul class="puzzle" dropzone="true">
+			<li *ngFor="let img of Image" class="box" [draggable]="true" [id]="img.index" (dragstart)="onDragStart($event, dropData)"
+				(drop)="onDrop($event, dropData)" (dragover)="allowDrop($event)" [style.width.px]="boxSize" [style.height.px]="boxSize"
+				[ngStyle]="{'background-image':'url(' + imageUrl + ') ','background-repeat':'no-repeat', 'background-position': '' + img.x_pos + ' '  + img.y_pos + '','background-size':''+ (gridsize * 100) +'% '+ (gridsize * 100) +'%'}">
+
+			</li>
+		</ul>
+		<div class="alert alert-success" role="alert" *ngIf="gameComplete">
+			Game Complete. <br>
+			You completed the game in time = {{ticks}} & {{steps }} steps.
+		</div>
+
+	</div>
+	<div class="scoreboard">
+		<div class="alert alert-secondary text-center" role="alert"><strong>Scoreboard</strong></div>
+		<div class="alert alert-success text-center" role="alert">
+			<strong>Time Spent: </strong> {{ ticks }}        <br />
+			<strong>  Steps : </strong> {{steps}}
+		</div>
+		<div class="finalImage" [ngStyle]="{'background-image':'url(' + imageUrl + ') '}"></div>
+		<div class="image-url">
+			<div class="input-group">
+				<span class="input-group-btn">
+                   <div class="btn btn-default text-white" >Image Url!</div>
+                </span>
+				<input type="url" class="form-control" placeholder="Image Url..." [(ngModel)]="imageUrl">
+			</div>
+		</div>
+		<div class="alert alert-warning text-center" style="margin-top: 12px;" role="alert">
+		<h3>Difficulty Level</h3>
+		<div class="difficulty-levels">
+			<div class="input-group">
+				<input class="form-check-input" type="radio" [(ngModel)]="difficulty" name="difficulty" value="2" checked (change)="startGame()">Low
+			</div>
+			<div class="input-group">
+				<input class="form-check-input" type="radio" [(ngModel)]="difficulty" name="difficulty" value="3" (change)="startGame()">Medium
+			</div>
+			<div class="input-group">
+				<input class="form-check-input" type="radio" [(ngModel)]="difficulty" name="difficulty" value="4" (change)="startGame()">High
+			</div>
+		</div>
+		<br>
+		<div class="score-detail">
+			<button type="button" class="btn btn-primary" (click)="startGame()"> Restart Game</button>
+			<button type="button" class="btn btn-primary" (click)="reRandomize()"> Randomize</button>
+		</div>
+		</div>
+
+	</div>
+</div>
