@@ -1,3 +1,11 @@
 .mat-button, .mat-icon-button, .mat-stroked-button {
     color: #fff;
 }
+.logonav img{
+    width: 10%;
+    display: block;
+}
+.navbar-nav{
+    justify-content: space-between;
+}
+a { cursor: pointer }

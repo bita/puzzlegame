@@ -24,6 +24,8 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { MatInputModule } from '@angular/material';
 import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
+import { RegisterComponent } from './register/register.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
     imports: [
@@ -51,7 +53,9 @@ import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
         LatestScoreComponent,
         BestScoreComponent,
         RankComponent,
-        PuzzleGameComponent
+        PuzzleGameComponent,
+        RegisterComponent,
+        AlertComponent
         
     ],
     providers: [

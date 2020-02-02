@@ -4,37 +4,8 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from '../_models ';
+let users = JSON.parse(localStorage.getItem('users')) || [];
 
-const users: User[] = [
-    { 
-        id: 1, 
-        username: 'admin', 
-        password: 'admin123', 
-        firstName: 'Admin', 
-        lastName: 'Admin' 
-    },
-    { 
-        id: 2, 
-        username: 'arash', 
-        password: 'arash123', 
-        firstName: 'Arash', 
-        lastName: 'Etemadi' 
-    },
-    { 
-        id: 3, 
-        username: 'bita', 
-        password: 'bita123', 
-        firstName: 'Bita', 
-        lastName: 'Jalili' 
-    },
-    { 
-        id: 4, 
-        username: 'user', 
-        password: 'user123', 
-        firstName: 'user', 
-        lastName: 'user' 
-    }
-];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -52,8 +23,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             switch (true) {
                 case url.endsWith('/users/authenticate') && method === 'POST':
                     return authenticate();
+                case url.endsWith('/users/register') && method === 'POST':
+                    return register();
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
+                case url.match(/\/users\/\d+$/) && method === 'DELETE':
+                    return deleteUser();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -75,9 +50,31 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             })
         }
 
+        function register() {
+            const user = body
+
+            if (users.find(x => x.username === user.username)) {
+                return error('Username "' + user.username + '" is already taken')
+            }
+
+            user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            return ok();
+        }
+
         function getUsers() {
             if (!isLoggedIn()) return unauthorized();
             return ok(users);
+        }
+
+        function deleteUser() {
+            if (!isLoggedIn()) return unauthorized();
+
+            users = users.filter(x => x.id !== idFromUrl());
+            localStorage.setItem('users', JSON.stringify(users));
+            return ok();
         }
 
         // helper functions
@@ -97,10 +94,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function isLoggedIn() {
             return headers.get('Authorization') === 'Bearer fake-jwt-token';
         }
+
+        function idFromUrl() {
+            const urlParts = url.split('/');
+            return parseInt(urlParts[urlParts.length - 1]);
+        }
     }
 }
 
-export let fakeBackendProvider = {
+export const fakeBackendProvider = {
     // use fake backend in place of Http service for backend-less development
     provide: HTTP_INTERCEPTORS,
     useClass: FakeBackendInterceptor,

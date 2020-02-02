@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+<nav class="position-sticky sticky-top navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
   <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="/">Home</a>
       <a class="nav-item nav-link" routerLink="/">Puzzeles</a>
@@ -6,4 +6,7 @@
 
       <a class="nav-item nav-link" (click)="logout()">Logout</a>
   </div>
+  
+  <a routerLink="/" class="navbar-nav ml-auto logonav"><img class="ml-auto" src="../../assets/img/heart.png" /></a>
+
 </nav>
