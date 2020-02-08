@@ -79,14 +79,22 @@ margin-right: 7%;
 }
 .unsolvedPuzzle .alert {
   width: 60%;
-  margin: 0 auto 18px;
+  margin: 12px auto 0;
 }
 .puzzles .unsolvedPuzzle .alert{
   width: 72%;
 margin: 12px auto;
 }
+.puzzles .overlay{
+    width: 72.55%;
+    height: 500px;
+    margin: 0 auto;
+    top: 0;
+    left: 13.75%;
+    background: #000000b3;
+}
 ul.puzzle{
-  margin: 36px auto;
+  margin: 24px auto;
 }
 .puzzles ul.puzzle{
   margin: 0 auto;
@@ -99,10 +107,10 @@ app-login, app-register{
   width: 100%;
 }
 .overlay{
-  width: 87%;
-height: 500px;
-margin: 0 auto;
-top: 0;
-left: 0;
-background:#000000b3;
+  width: 60.45%;
+  height: 500px;
+  margin: 0 auto;
+  top: 0;
+  left: 19.75%;
+  background:#000000b3;
 }

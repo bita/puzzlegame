@@ -121,6 +121,10 @@ export class PuzzleGameComponent implements OnInit {
     this.initializeGame();
     this.breakImageParts();
     this.reRandomize();
+    if (this.timeVar) {
+      this.timeVar.unsubscribe();
+    }
+    this.isVisible = true;
 
    
   }
