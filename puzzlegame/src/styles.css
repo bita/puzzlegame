@@ -20,3 +20,70 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .w100 .card{
   width: 29.3% !important;
 }
+ul li{
+  list-style-type: none;
+}
+.w20{
+  width: 20%;
+  float: right;
+}
+.w80{
+  width: 80%;
+  float: right;
+}
+.w100{
+  width: 100%;
+}
+app-puzzeles{
+  width: 100% !important;
+}
+.p0{
+  padding: 0 !important;
+}
+.scoreboard {
+    width: 30%;
+    box-sizing: border-box;
+    padding: 0 1%;
+}
+.unsolvedPuzzle {
+  width: 68%;
+  box-sizing: border-box;
+  padding: 0 1%;
+}
+.puzzeles .scoreboard{
+    width: 30% !important;
+  }
+ul.side, .puzzles .unsolvedPuzzle {
+  border: 1px solid#5f6973;
+border-radius: 8px;
+background:#76828e33;
+}
+.puzzles .unsolvedPuzzle{
+  padding: 24px 1%;
+}
+.puzzles .imagePuzzle{
+  padding-top: 0 !important;
+}
+.puzzles .finalImage{
+  display: none;
+}
+ul.side{
+  padding: 32px 0 !important;
+margin-right: 7%;
+}
+.mb12{
+  margin-bottom: 12px;
+}
+.imgli{
+  cursor: pointer;
+}
+.puzzles .unsolvedPuzzle .alert, .unsolvedPuzzle .alert{
+  width: 72%;
+margin: 12px auto;
+}
+.puzzles ul.puzzle, ul.puzzle{
+  margin: 0 auto;
+}
+.puzzles .scoreboard{
+  margin: 0 auto;
+}

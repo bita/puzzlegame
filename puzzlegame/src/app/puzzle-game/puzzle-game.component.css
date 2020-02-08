@@ -8,11 +8,6 @@
     justify-content: center;
 }
 
-.unsolvedPuzzle, .scoreboard {
-    width: 48%;
-    box-sizing: border-box;
-    padding: 0 1%;
-}
 
 .sectionName {
     color: black;

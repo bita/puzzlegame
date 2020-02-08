@@ -1,0 +1,15 @@
+<div class="container-fluid puzzles">
+    <div class="row">
+        <div class="bg-dark col col-10 p0">
+            <app-puzzle-game [imageUrl]="imageUrl"></app-puzzle-game>
+        </div>
+    
+        <div class="col col-2 bg-dark p0">
+            <ul class="p0 text-center side">
+                <li *ngFor="let img of imges" class="mb12 imgli">
+                    <a (click)="setimageUrl(img)"  class="text-danger"><img width="150px" class="rounded" height="150px" src="{{img}}"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

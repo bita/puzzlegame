@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material';
 import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './alert/alert.component';
+import { PuzzelesComponent } from './puzzeles/puzzeles.component';
 
 @NgModule({
     imports: [
@@ -55,7 +56,8 @@ import { AlertComponent } from './alert/alert.component';
         RankComponent,
         PuzzleGameComponent,
         RegisterComponent,
-        AlertComponent
+        AlertComponent,
+        PuzzelesComponent
         
     ],
     providers: [

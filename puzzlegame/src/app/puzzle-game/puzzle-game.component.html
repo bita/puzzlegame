@@ -24,9 +24,11 @@
 		<div class="image-url">
 			<div class="input-group">
 				<span class="input-group-btn">
-                   <div class="btn btn-default text-white" >Image Url!</div>
+                   <div class="btn btn-default text-white" >Upload New Image!</div>
                 </span>
-				<input type="url" class="form-control" placeholder="Image Url..." [(ngModel)]="imageUrl">
+				<!-- <input type="url" class="form-control" placeholder="Image Url..." [(ngModel)]="imageUrl"> -->
+				<input type="file" class="pt-5 pb-5 form-control" (change)="onFileSelected($event)">
+
 			</div>
 		</div>
 		<div class="alert alert-warning text-center" style="margin-top: 12px;" role="alert">

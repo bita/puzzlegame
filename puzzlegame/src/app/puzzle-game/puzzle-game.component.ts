@@ -1,14 +1,14 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
-import { timer } from 'rxjs';
+import { timer, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-puzzle-game',
-  templateUrl: './puzzle-game.component.html',
+  templateUrl:'./puzzle-game.component.html',
   styleUrls: ['./puzzle-game.component.css']
 })
 export class PuzzleGameComponent implements OnInit {
-  imageUrl: string = '../../assets/img/3.jpg';
+  @Input() imageUrl: string = '../../assets/img/3.jpg';
   imageSize: number = 500;
   gridsize: number = 8;
   boxSize: number = 100 / (this.gridsize - 1);
@@ -19,7 +19,7 @@ export class PuzzleGameComponent implements OnInit {
   difficulty: string = '4';
   steps: number = 0;
   ticks: string = '0:00';
-  timer: any = timer(1000);
+  timer$ = timer(0, 1000);
   timeVar: any;
   gameComplete: Boolean = false;
 
@@ -124,7 +124,7 @@ export class PuzzleGameComponent implements OnInit {
     if (this.timeVar) {
       this.timeVar.unsubscribe();
     }
-    this.timeVar = this.timer.subscribe(t => {
+    this.timeVar = this.timer$.subscribe(t => {
       this.settime(t);
     });
   }
