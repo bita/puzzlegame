@@ -15,7 +15,7 @@ export class PuzzleGameComponent implements OnInit {
   index: number = 0;
   totalBoxes: number = this.gridsize * this.gridsize;
   Image: any[] = [];
-  imageName: string = this.imageUrl.substr(this.imageUrl.lastIndexOf('/') + 1).split('.')[0];
+  @Input()imageName: string = this.imageUrl.substr(this.imageUrl.lastIndexOf('/') + 1).split('.')[0];
   difficulty: string = '4';
   steps: number = 0;
   ticks: string = '0:00';

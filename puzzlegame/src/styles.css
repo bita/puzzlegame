@@ -53,7 +53,7 @@ app-puzzeles{
 .puzzeles .scoreboard{
     width: 30% !important;
   }
-ul.side, .puzzles .unsolvedPuzzle {
+ul.side, .puzzles .unsolvedPuzzle,.unsolvedPuzzle {
   border: 1px solid#5f6973;
 border-radius: 8px;
 background:#76828e33;
@@ -77,13 +77,21 @@ margin-right: 7%;
 .imgli{
   cursor: pointer;
 }
-.puzzles .unsolvedPuzzle .alert, .unsolvedPuzzle .alert{
+.unsolvedPuzzle .alert {
+  width: 60%;
+  margin: 0 auto 18px;
+}
+.puzzles .unsolvedPuzzle .alert{
   width: 72%;
 margin: 12px auto;
 }
-.puzzles ul.puzzle, ul.puzzle{
+ul.puzzle{
+  margin: 36px auto;
+}
+.puzzles ul.puzzle{
   margin: 0 auto;
 }
+
 .puzzles .scoreboard{
   margin: 0 auto;
 }
