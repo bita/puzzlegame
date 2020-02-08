@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { timer, combineLatest } from 'rxjs';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-puzzle-game',
@@ -22,7 +23,7 @@ export class PuzzleGameComponent implements OnInit {
   timer$ = timer(0, 1000);
   timeVar: any;
   gameComplete: Boolean = false;
-
+  isVisible:boolean = true;
   indexes: number[] = [];
   position: number[] = [];
   ngOnInit() {
@@ -121,6 +122,10 @@ export class PuzzleGameComponent implements OnInit {
     this.breakImageParts();
     this.reRandomize();
 
+   
+  }
+  startTimer(): void {
+    this.isVisible = false;
     if (this.timeVar) {
       this.timeVar.unsubscribe();
     }

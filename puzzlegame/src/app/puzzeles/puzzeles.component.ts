@@ -24,8 +24,12 @@ export class PuzzelesComponent implements OnInit {
     return this.imageName;
 
   }
+  // timeVar: any;
   // setimageName(imgname){
   //   this.imageName = imgname;
   // }
-
+  // @Output("starttimer") starttimer = new EventEmitter();
+  // settimer(){
+  //   this.starttimer.emit(this.timeVar);
+  // }
 }

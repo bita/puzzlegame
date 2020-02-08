@@ -95,3 +95,14 @@ ul.puzzle{
 .puzzles .scoreboard{
   margin: 0 auto;
 }
+app-login, app-register{
+  width: 100%;
+}
+.overlay{
+  width: 87%;
+height: 500px;
+margin: 0 auto;
+top: 0;
+left: 0;
+background:#000000b3;
+}

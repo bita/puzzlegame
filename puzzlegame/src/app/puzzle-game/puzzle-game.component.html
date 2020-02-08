@@ -1,13 +1,22 @@
 <div class="imagePuzzle bg-dark">
 	<div class="unsolvedPuzzle">
 		<div class="alert alert-secondary text-center" role="alert"><strong>Name:</strong>  {{imageName}}</div>
-		<ul class="puzzle" dropzone="true">
-			<li *ngFor="let img of Image" class="box" [draggable]="true" [id]="img.index" (dragstart)="onDragStart($event, dropData)"
-				(drop)="onDrop($event, dropData)" (dragover)="allowDrop($event)" [style.width.px]="boxSize" [style.height.px]="boxSize"
-				[ngStyle]="{'background-image':'url(' + imageUrl + ') ','background-repeat':'no-repeat', 'background-position': '' + img.x_pos + ' '  + img.y_pos + '','background-size':''+ (gridsize * 100) +'% '+ (gridsize * 100) +'%'}">
-
-			</li>
-		</ul>
+		<div class="position-relative">
+			<ul  class="puzzle" dropzone="true">
+				<li *ngFor="let img of Image" class="box" [draggable]="true" [id]="img.index" (dragstart)="onDragStart($event, dropData)"
+					(drop)="onDrop($event, dropData)" (dragover)="allowDrop($event)" [style.width.px]="boxSize" [style.height.px]="boxSize"
+					[ngStyle]="{'background-image':'url(' + imageUrl + ') ','background-repeat':'no-repeat', 'background-position': '' + img.x_pos + ' '  + img.y_pos + '','background-size':''+ (gridsize * 100) +'% '+ (gridsize * 100) +'%'}">
+	
+				</li>
+			</ul>
+			<div [style.display]="isVisible ? 'block' : 'none'">
+				<div class="container d-flex h-100  position-absolute overlay">
+					<div class="row mr-auto ml-auto justify-content-center align-self-center">
+						<button type="button" style="width:200px;" class="align-middle btn btn-primary" (click)="startTimer()">Start!</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="alert alert-success" role="alert" *ngIf="gameComplete">
 			Game Complete. <br>
 			You completed the game in time = {{ticks}} & {{steps }} steps.
