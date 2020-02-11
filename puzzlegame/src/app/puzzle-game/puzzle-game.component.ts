@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Observable } from 'rxjs';
 import { timer, combineLatest } from 'rxjs';
 import { Overlay } from '@angular/cdk/overlay';
+import { MatInputModule } from '@angular/material';
 
 @Component({
   selector: 'app-puzzle-game',
@@ -19,6 +20,7 @@ export class PuzzleGameComponent implements OnInit {
   @Input()imageName: string = this.imageUrl.substr(this.imageUrl.lastIndexOf('/') + 1).split('.')[0];
   difficulty: string = '4';
   steps: number = 0;
+  score: number = 0;
   ticks: string = '0:00';
   timer$ = timer(0, 1000);
   timeVar: any;
@@ -90,15 +92,17 @@ export class PuzzleGameComponent implements OnInit {
     this.steps++;
     this.gameComplete = this.isSorted(this.position);
     if (this.gameComplete) {
+      var ms = this.ticks; 
+      var a = ms.split(':');
+      var seconds = (+a[0]) * 60 + (+a[1])
+      this.score = Math.ceil(60000 / (seconds * this.steps));
 
       if (this.timeVar) {
         this.timeVar.unsubscribe();
       }
     }
-
-   
   }
-
+  
   allowDrop(event): void {
     event.preventDefault();
     event.target.style.opacity = 1;
@@ -138,7 +142,7 @@ export class PuzzleGameComponent implements OnInit {
     });
   }
 
-  settime(t: number): void {
+  settime(t: number) {
     this.ticks = Math.floor(t / 60).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) + ':' +
       (t % 60).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
   }
@@ -157,7 +161,7 @@ export class PuzzleGameComponent implements OnInit {
   }
 
   initializeGame(): void {
-
+    this.isVisible = true;
     this.gridsize = Number(this.difficulty);
     this.boxSize = 100 / (this.gridsize - 1);
     this.index = 0;
@@ -168,6 +172,9 @@ export class PuzzleGameComponent implements OnInit {
     this.Image = [];
     this.indexes = [];
     this.position = [];
+    this.steps = 0;
+    this.isVisible = true;
+
   }
 }
 

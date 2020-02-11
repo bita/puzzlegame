@@ -20,6 +20,7 @@
 		<div class="alert alert-success" role="alert" *ngIf="gameComplete">
 			Game Complete. <br>
 			You completed the game in time = {{ticks}} & {{steps }} steps.
+			Your Score is {{score}}
 		</div>
 
 	</div>
@@ -27,7 +28,8 @@
 		<div class="alert alert-secondary text-center" role="alert"><strong>Scoreboard</strong></div>
 		<div class="alert alert-success text-center" role="alert">
 			<strong>Time Spent: </strong> {{ ticks }}        <br />
-			<strong>  Steps : </strong> {{steps}}
+			<strong>  Steps : </strong> {{steps}} <br />
+			<strong>  Your Score : </strong> {{score}}
 		</div>
 		<div class="finalImage" [ngStyle]="{'background-image':'url(' + imageUrl + ') '}"></div>
 		<div class="image-url">

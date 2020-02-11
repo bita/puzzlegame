@@ -14,6 +14,8 @@ export class PuzzelesComponent implements OnInit {
       ]
   imageUrl: string = '../../assets/img/4.jpg';
   imageName: string = "4";
+  isVisible:boolean = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -22,7 +24,6 @@ export class PuzzelesComponent implements OnInit {
     this.imageUrl = img;
     this.imageName = this.imageUrl.substr(this.imageUrl.lastIndexOf('/') + 1).split('.')[0];
     return this.imageName;
-
   }
   // timeVar: any;
   // setimageName(imgname){
