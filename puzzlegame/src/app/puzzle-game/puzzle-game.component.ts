@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { timer, combineLatest } from 'rxjs';
 import { Overlay } from '@angular/cdk/overlay';
 import { MatInputModule } from '@angular/material';
@@ -22,7 +22,7 @@ export class PuzzleGameComponent implements OnInit {
   steps: number = 0;
   score: number = 0;
   ticks: string = '0:00';
-  timer$ = timer(0, 1000);
+  @Input()timer$ = timer(0, 1000);
   timeVar: any;
   gameComplete: Boolean = false;
   isVisible:boolean = true;
@@ -93,9 +93,11 @@ export class PuzzleGameComponent implements OnInit {
     this.gameComplete = this.isSorted(this.position);
     if (this.gameComplete) {
       var ms = this.ticks; 
+      var difficulty = parseInt(this.difficulty);
       var a = ms.split(':');
       var seconds = (+a[0]) * 60 + (+a[1])
-      this.score = Math.ceil(60000 / (seconds * this.steps));
+      this.score = Math.ceil((Math.pow(6000 / ((seconds)), difficulty))/ 1000000);
+      
 
       if (this.timeVar) {
         this.timeVar.unsubscribe();
@@ -121,10 +123,12 @@ export class PuzzleGameComponent implements OnInit {
   }
 
   startGame(): void {
+    alert("start");
     this.reset();
     this.initializeGame();
     this.breakImageParts();
     this.reRandomize();
+    this.steps = 0;
     if (this.timeVar) {
       this.timeVar.unsubscribe();
     }
@@ -132,13 +136,23 @@ export class PuzzleGameComponent implements OnInit {
 
    
   }
+  stopGame():void {
+    this.ticks = "0:00";
+    this.timer$ = timer(0, 1000);
+    this.timeVar.unsubscribe();
+    this.steps = 0;
+    this.isVisible = true;
+  }
   startTimer(): void {
-    this.isVisible = false;
     if (this.timeVar) {
       this.timeVar.unsubscribe();
+      this.isVisible = false;
+      this.steps = 0;
     }
     this.timeVar = this.timer$.subscribe(t => {
       this.settime(t);
+      this.isVisible = false;
+
     });
   }
 
@@ -156,8 +170,10 @@ export class PuzzleGameComponent implements OnInit {
       img.index = this.index;
       this.indexes.push(this.index);
       this.Image.push(img);
+      
     }
     this.boxSize = this.imageSize / this.gridsize;
+    
   }
 
   initializeGame(): void {
@@ -174,6 +190,9 @@ export class PuzzleGameComponent implements OnInit {
     this.position = [];
     this.steps = 0;
     this.isVisible = true;
+    if (this.timeVar) {
+      this.timeVar.unsubscribe();
+    }
 
   }
 }

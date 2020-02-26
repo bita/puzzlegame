@@ -1,3 +1,67 @@
 app-puzzeles{
     width: 100% !important;
 }
+.imagePuzzle {
+    color: white;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 32px 1%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.sectionName {
+    color: black;
+    text-align: center;
+    width: 500px;
+    height: 50px;
+}
+
+.score-detail, .difficulty-levels {
+    color: black;
+    display: flex;
+    justify-content: space-around;
+}
+
+li {
+    list-style-type: none;
+}
+
+.puzzle {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    flex-wrap: wrap;
+    box-sizing: initial;
+    border: 1px solid navy;
+}
+
+.box {
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.finalImage {
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    /*background-image: url("../../assets/images/taj.jpg");*/
+    background-size: 100% 100%;
+}
+
+.unsolved, .solved {
+    width: 50%;
+}
+
+.image-url {
+    margin-top: 5%;
+}
+.input-group{
+    display: inline !important;
+}
