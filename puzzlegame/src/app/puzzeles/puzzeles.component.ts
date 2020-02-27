@@ -246,6 +246,11 @@ export class PuzzelesComponent implements OnInit {
       this.timeVar.unsubscribe();
     };
     this.steps = 0;
+    this.score = 0;
+    this.reset();
+    this.initializeGame();
+    this.breakImageParts();
+    this.reRandomize();
 
   }
   refreshSteps(){
