@@ -43,8 +43,7 @@ export class PuzzelesComponent implements OnInit {
   position: number[] = [];
   ngOnInit() {
     this.startGame();
-    this.subscription = this.timer$.subscribe((i) => {
-    });
+    
   }
 
   isSorted(indexes): Boolean {
@@ -138,7 +137,6 @@ export class PuzzelesComponent implements OnInit {
   }
 
   startGame(): void {
-    alert("start");
     this.reset();
     this.initializeGame();
     this.breakImageParts();
@@ -147,9 +145,7 @@ export class PuzzelesComponent implements OnInit {
     if (this.timeVar) {
       this.timeVar.unsubscribe();
     }
-    this.isVisible = true;
-
-   
+    this.isVisible = true; 
   }
   stopGame():void {
     this.ticks = "0:00";
@@ -240,7 +236,15 @@ export class PuzzelesComponent implements OnInit {
     this.isVisible = true;
     this.refresh = true;
     this.ticks= "0:00"
-    this.reset$.next(void 0);
+    if(!this.isVisible)
+    {
+
+      this.reset$.next(void 0)
+    }
+    else if (this.timeVar) 
+    {
+      this.timeVar.unsubscribe();
+    };
     this.steps = 0;
 
   }
