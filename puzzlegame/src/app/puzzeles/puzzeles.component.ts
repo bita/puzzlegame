@@ -118,6 +118,10 @@ export class PuzzelesComponent implements OnInit {
       }
     }
   }
+
+
+
+  
   
   allowDrop(event): void {
     event.preventDefault();
