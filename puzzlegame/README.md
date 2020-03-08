@@ -1,5 +1,5 @@
 # Puzzlegame
-
+This is a test state of this project. It will be update over developing. Feel free to test it.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
 ## Development server
