@@ -1,4 +1,5 @@
 # Puzzlegame
+
 This is a test state of this project. It will be update over developing. Feel free to test it.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
@@ -25,4 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8ad108c9ec617a138e7058a445fce231e11e0221
